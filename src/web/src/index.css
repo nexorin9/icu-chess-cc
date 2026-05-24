@@ -1,0 +1,313 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: #1a1a2e;
+  color: #eee;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.header h1 {
+  font-size: 1.8rem;
+  color: #00d4ff;
+  margin-bottom: 8px;
+}
+
+.header p {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: #00d4ff;
+  color: #1a1a2e;
+}
+
+.btn-primary:hover {
+  background: #00b8e6;
+}
+
+.btn-secondary {
+  background: #2a2a4e;
+  color: #fff;
+  border: 1px solid #00d4ff;
+}
+
+.btn-secondary:hover {
+  background: #3a3a6e;
+}
+
+.bed-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  background: #0f0f1a;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+.bed-cell {
+  aspect-ratio: 1;
+  min-height: 80px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  border: 2px solid transparent;
+}
+
+.bed-cell.empty {
+  background: #1a1a2e;
+  border-color: #2a2a4e;
+}
+
+.bed-cell.empty:hover {
+  border-color: #00d4ff;
+}
+
+.bed-cell.normal {
+  background: #2a4a2a;
+  border-color: #3a6a3a;
+}
+
+.bed-cell.isolation {
+  background: #4a2a2a;
+  border-color: #6a3a3a;
+}
+
+.bed-cell.protective {
+  background: #2a2a4a;
+  border-color: #3a3a6a;
+}
+
+.bed-cell.warning {
+  animation: pulse-warning 1.5s infinite;
+}
+
+.bed-cell.selected {
+  border-color: #00d4ff;
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.5);
+}
+
+@keyframes pulse-warning {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 100, 100, 0.4); }
+  50% { box-shadow: 0 0 12px 4px rgba(255, 100, 100, 0.6); }
+}
+
+.bed-id {
+  font-size: 0.75rem;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+.patient-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.patient-tags {
+  display: flex;
+  gap: 4px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tag {
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.tag-mrsa { background: #ff4444; color: #fff; }
+.tag-vre { background: #ff8800; color: #fff; }
+.tag-immuno { background: #8800ff; color: #fff; }
+.tag-airborne { background: #ff00ff; color: #fff; }
+.tag-contact { background: #00ff88; color: #1a1a2e; }
+.tag-droplet { background: #ffff00; color: #1a1a2e; }
+
+.legend {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  font-size: 0.8rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #1a1a2e;
+  border: 1px solid #00d4ff;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modal h2 {
+  color: #00d4ff;
+  margin-bottom: 16px;
+  font-size: 1.2rem;
+}
+
+.modal h3 {
+  color: #888;
+  margin: 16px 0 8px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.suggestion-item {
+  background: #2a2a4e;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.suggestion-item strong {
+  color: #00d4ff;
+}
+
+.suggestion-item p {
+  font-size: 0.85rem;
+  color: #aaa;
+  margin-top: 4px;
+}
+
+.conflict-list {
+  list-style: none;
+  padding: 0;
+}
+
+.conflict-list li {
+  padding: 6px 0;
+  border-bottom: 1px solid #2a2a4e;
+  font-size: 0.85rem;
+  color: #ff6666;
+}
+
+.signature-section {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.signature-item {
+  flex: 1;
+  min-width: 120px;
+  text-align: center;
+  padding: 12px;
+  border: 1px dashed #444;
+  border-radius: 8px;
+}
+
+.signature-item.signed {
+  border-style: solid;
+  border-color: #00d4ff;
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.signature-item h4 {
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+.signature-item p {
+  font-size: 0.9rem;
+  color: #00d4ff;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  justify-content: flex-end;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #888;
+}
+
+.error {
+  color: #ff6666;
+  padding: 20px;
+  text-align: center;
+  background: rgba(255, 100, 100, 0.1);
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
